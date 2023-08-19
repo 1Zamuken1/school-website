@@ -11,12 +11,12 @@ const router = Router();
 
 router.get("/courses", getCourses); //obtener
 
-router.get("/courses/:id", getCourse); //obtener una única tarea
+router.get("/courses/:code", getCourse); //obtener una única tarea
 
 router.post("/courses", createCourse); //crear
 
-router.put("/courses/:id", updateCourse);
+router.put("/courses/:code", updateCourse);
 
-router.delete("/courses/:id", deleteCourse); //borrar una única tarea
+router.delete("/courses/:code", deleteCourse); //borrar una única tarea
 
 export default router;
