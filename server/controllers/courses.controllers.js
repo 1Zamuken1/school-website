@@ -14,8 +14,8 @@ export const getCourse = async (req, res) => {
     req.params.code,
   ]);
 
-// Devolver error si no existe el curso solicitado
-  if (result.length == 0) {
+  // Devolver error si no existe el curso solicitado
+  if (result.length === 0) {
     return res.status(404).json({ message: "Task not found" });
   }
 
@@ -42,6 +42,11 @@ export const updateCourse = (req, res) => {
 };
 
 //Eliminar curso
-export const deleteCourse = (req, res) => {
-  res.send("Eliminando curso");
+export const deleteCourse = async (req, res) => {
+  const [result] = await pool.query("DELETE FROM courses WHERE code = ?", [
+    req.params.code,
+  ]);
+  if (result.affectedRows === 0) {
+    return result.sendStatus(204).json({ message: "course not found" });
+  }
 };
