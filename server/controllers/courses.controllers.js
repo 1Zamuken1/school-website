@@ -37,16 +37,29 @@ export const createCourse = async (req, res) => {
 };
 
 // Actualizar curso
-export const updateCourse = (req, res) => {
-  res.send("Actualizando curso");
+export const updateCourse = async (req, res) => {
+  try {
+    const result = await pool.query("UPDATE courses SET ? WHERE code = ?", [
+      req.body,
+      req.params.code,
+    ]);
+    res.json(result);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 //Eliminar curso
 export const deleteCourse = async (req, res) => {
-  const [result] = await pool.query("DELETE FROM courses WHERE code = ?", [
-    req.params.code,
-  ]);
-  if (result.affectedRows === 0) {
-    return result.sendStatus(204).json({ message: "course not found" });
+  try {
+    const [result] = await pool.query("DELETE FROM courses WHERE code = ?", [
+      req.params.code,
+    ]);
+    if (result.affectedRows == 0) {
+      return res.sendStatus(404).json({ message: "course not found" });
+    }
+    return res.sendStatus(204);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
 };
