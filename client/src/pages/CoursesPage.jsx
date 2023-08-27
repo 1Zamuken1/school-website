@@ -13,13 +13,17 @@ export default function CoursesPage() {
     loadCourses();
   }, []);
 
+  function renderMain() {
+    if (courses.length === 0) return <h1>No Courses Yet</h1>;
+    return courses.map((course) => (
+      <CourseCard course={course} key={course.code} />
+    ));
+  }
+
   return (
     <div>
       <h1>Courses</h1>
-
-      {courses.map((course) => (
-        <CourseCard course={course} key={course.code} />
-      ))}
+      {renderMain()}
     </div>
   );
 }
