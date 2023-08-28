@@ -12,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<CoursesPage />} />
         <Route path='/new-course' element={<CourseForm />} />
+        <Route path='/edit-course/:code' element={<CourseForm />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </CourseContextProvider>

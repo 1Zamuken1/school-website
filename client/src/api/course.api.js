@@ -8,3 +8,9 @@ export const createCourseRequest = async (course) =>
 
 export const deleteCourseRequest = async (code) =>
   await axios.delete(`http://localhost:4000/courses/${code}`);
+
+export const getCourseRequest = async (code) =>
+  await axios.get(`http://localhost:4000/courses/${code}`);
+
+export const updateCourseRequest = async (code, newFields) =>
+  await axios.put(`http://localhost:4000/courses/${code}`, newFields);

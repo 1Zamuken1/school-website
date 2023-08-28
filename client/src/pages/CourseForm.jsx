@@ -1,20 +1,49 @@
 import { Form, Formik } from "formik";
 import { useCourses } from "../context/CourseProvider";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function CourseForm() {
-  const { createCourse } = useCourses();
+  const { createCourse, getCourse, updateCourse } = useCourses();
+  const [course, setCourse] = useState({
+    course_title: "",
+    course_description: "",
+  });
+  const params = useParams();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const loadCourse = async () => {
+      if (params.code) {
+        const course = await getCourse(params.code);
+        setCourse({
+          course_title: course.course_title,
+          course_description: course.course_description,
+        });
+      }
+    };
+    loadCourse();
+  }, []);
 
   return (
     <div>
+      <h1>{params.code ? "Edit Course" : "New Course"}</h1>
+
       <Formik
-        initialValues={{
-          course_title: "",
-          course_description: "",
-        }}
+        initialValues={course}
+        enableReinitialize={true}
         onSubmit={async (values, actions) => {
           console.log(values);
-          createCourse(values);
-          actions.resetForm();
+
+          if (params.code) {
+            await updateCourse(params.code, values);
+          } else {
+            await createCourse(values);
+          }
+          navigate("/");
+          setCourse({
+            course_title: "",
+            course_description: "",
+          });
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
