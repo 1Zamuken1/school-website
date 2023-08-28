@@ -1,7 +1,9 @@
 import { Form, Formik } from "formik";
-import { createCourseRequest } from "../api/course.api";
+import { useCourses } from "../context/CourseProvider";
 
 export default function CourseForm() {
+  const { createCourse } = useCourses();
+
   return (
     <div>
       <Formik
@@ -11,13 +13,8 @@ export default function CourseForm() {
         }}
         onSubmit={async (values, actions) => {
           console.log(values);
-          try {
-            const response = await createCourseRequest(values);
-            console.log(response);
-            actions.resetForm();
-          } catch (error) {
-            console.log(error);
-          }
+          createCourse(values);
+          actions.resetForm();
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
@@ -39,9 +36,9 @@ export default function CourseForm() {
               onChange={handleChange}
               value={values.course_description}
             ></textarea>
-              <button type='submit' disabled={isSubmitting}>
-                {isSubmitting ? "Saving . . .": "Save"}
-              </button>
+            <button type='submit' disabled={isSubmitting}>
+              {isSubmitting ? "Saving . . ." : "Save"}
+            </button>
           </Form>
         )}
       </Formik>

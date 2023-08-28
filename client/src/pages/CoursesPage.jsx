@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
-import { getCoursesRequest } from "../api/course.api";
+import { useEffect } from "react";
 import CourseCard from "../components/CourseCard";
+import { useCourses } from "../context/CourseProvider";
 
 export default function CoursesPage() {
-  const [courses, setCourses] = useState([]);
-
+  const { courses, loadCourses } = useCourses();
   useEffect(() => {
-    async function loadCourses() {
-      const response = await getCoursesRequest();
-      setCourses(response.data);
-    }
     loadCourses();
   }, []);
 
