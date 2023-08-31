@@ -14,3 +14,8 @@ export const getCourseRequest = async (code) =>
 
 export const updateCourseRequest = async (code, newFields) =>
   await axios.put(`http://localhost:4000/courses/${code}`, newFields);
+
+export const toggleCourseDoneRequest = async (code, done) =>
+  await axios.put(`http://localhost:4000/courses/${code}`, {
+    done,
+  });

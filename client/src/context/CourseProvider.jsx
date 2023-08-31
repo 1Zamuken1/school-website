@@ -5,7 +5,6 @@ import {
   createCourseRequest,
   getCourseRequest,
   updateCourseRequest,
-  /*toggleCourseDoneRequest,*/
 } from "../api/course.api";
 import { CourseContext } from "./CourseContex";
 
@@ -70,7 +69,14 @@ export const CourseContextProvider = ({ children }) => {
 
   return (
     <CourseContext.Provider
-      value={{ courses, loadCourses, deleteCourse, createCourse, getCourse, updateCourse}}
+      value={{
+        courses,
+        loadCourses,
+        deleteCourse,
+        createCourse,
+        getCourse,
+        updateCourse,
+      }}
     >
       {children}
     </CourseContext.Provider>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import CourseCard from "../components/CourseCard";
 import { useCourses } from "../context/CourseProvider";
 
-export default function CoursesPage() {
+function CoursesPage() {
   const { courses, loadCourses } = useCourses();
   useEffect(() => {
     loadCourses();
@@ -22,3 +22,5 @@ export default function CoursesPage() {
     </div>
   );
 }
+
+export default CoursesPage;

@@ -3,18 +3,30 @@ import { useCourses } from "../context/CourseProvider";
 import { useNavigate } from "react-router-dom";
 
 export default function CourseCard({ course }) {
-  const { deleteCourse } = useCourses(course);
-  const navigate = useNavigate()
+  const { deleteCourse, toggleCourseDone } = useCourses(course);
+  const Navigate = useNavigate();
+  const handleDone = async () => {
+    await toggleCourseDone(course.code);
+  };
   return (
-    <div course={course} key={course.code}>
-      <h2>{course.course_title}</h2>
+    <div course={course} key={course}>
+      <header>
+        <h2>{course.course_title}</h2>
+
+        <span>
+          {course.done == 1 ? <VscFolderActive /> : <VscFolderOpened />}
+        </span>
+      </header>
+
       <p>{course.course_description}</p>
-      <span>
-        {course.done == 1 ? <VscFolderActive /> : <VscFolderOpened />}
-      </span>
       <span>{course.createAt}</span>
-      <button onClick={() => deleteCourse(course.code)}>Delete</button>
-      <button onClick={() => navigate(`/edit-course/${course.code}`)}>Edit</button>
+
+      <div>
+        <button onClick={() => deleteCourse(course.code)}>Delete</button>
+        <button onClick={() => Navigate(`/edit-course/${course.code}`)}>
+          Edit
+        </button>
+      </div>
     </div>
   );
 }

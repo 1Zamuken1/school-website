@@ -1,13 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import CoursesPage from "./pages/CoursesPage";
+import CoursesPage from "./Pages/CoursesPage";
 import CourseForm from "./pages/CourseForm";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import { CourseContextProvider } from "./context/CourseProvider";
+import "./index.css"
 
 export default function App() {
   return (
-    <CourseContextProvider>
+    <div className=" bg-Abysm text-White h-screen">
+      <CourseContextProvider>
       <Navbar />
       <Routes>
         <Route path='/' element={<CoursesPage />} />
@@ -16,5 +18,6 @@ export default function App() {
         <Route path='*' element={<NotFound />} />
       </Routes>
     </CourseContextProvider>
+    </div>
   );
 }
