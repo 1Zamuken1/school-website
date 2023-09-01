@@ -1,17 +1,23 @@
-import { Link } from "react-router-dom"
-import "../index.css"
+import { Link } from "react-router-dom";
+import "../index.css";
 
 export default function Navbar() {
   return (
-    <div className='bg-Crystal'>
-      <h1>React MySQL</h1>
+    <div className='bg-Koopa flex justify-between px-20 py-4'>
+      <Link to={"/"} className='text-Warm text-2xl font-bold'>
+        <h1>Aprendiendo</h1>
+      </Link>
 
-      <ul>
+      <ul className='flex gap-x-2'>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to='/' className='bg-Melancholia px-2 py-1'>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to='/new-course'>Create Course</Link>
+          <Link to='/new-course' className='bg-Harmony text-Warm px-2 py-1'>
+            Create Course
+          </Link>
         </li>
       </ul>
     </div>

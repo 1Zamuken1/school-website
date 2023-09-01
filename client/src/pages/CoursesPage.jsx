@@ -17,8 +17,8 @@ function CoursesPage() {
 
   return (
     <div>
-      <h1>Courses</h1>
-      {renderMain()}
+      <h1 className='text-5xl text-Esmerald font-bold text-center'>Courses</h1>
+      <div className='grid grid-cols-4 gap-4 py-7'>{renderMain()}</div>
     </div>
   );
 }

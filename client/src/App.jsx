@@ -4,20 +4,22 @@ import CourseForm from "./pages/CourseForm";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import { CourseContextProvider } from "./context/CourseProvider";
-import "./index.css"
+import "./index.css";
 
 export default function App() {
   return (
-    <div className=" bg-Abysm text-White h-screen">
-      <CourseContextProvider>
+    <div className=' bg-Abysm text-White h-screen'>
       <Navbar />
-      <Routes>
-        <Route path='/' element={<CoursesPage />} />
-        <Route path='/new-course' element={<CourseForm />} />
-        <Route path='/edit-course/:code' element={<CourseForm />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-    </CourseContextProvider>
+      <div className='container mx-auto py-4 px-10'>
+        <CourseContextProvider>
+          <Routes>
+            <Route path='/' element={<CoursesPage />} />
+            <Route path='/new-course' element={<CourseForm />} />
+            <Route path='/edit-course/:code' element={<CourseForm />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </CourseContextProvider>
+      </div>
     </div>
   );
 }
