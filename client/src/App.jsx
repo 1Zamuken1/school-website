@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Login from "./Pages/Login"
 import CoursesPage from "./Pages/CoursesPage";
 import CourseForm from "./pages/CourseForm";
 import NotFound from "./pages/NotFound";
@@ -13,6 +14,7 @@ export default function App() {
       <div className='container mx-auto py-4 px-10'>
         <CourseContextProvider>
           <Routes>
+            <Route path='/login' element={<Login/>}/>
             <Route path='/' element={<CoursesPage />} />
             <Route path='/new-course' element={<CourseForm />} />
             <Route path='/edit-course/:code' element={<CourseForm />} />
