@@ -43,11 +43,11 @@ export const createUser = async (req, res) => {
 //Actualizar usuario
 export const updateUser = async (req, res) => {
   try {
-    const result = await pool.query("UPDATE user SET ? WHERE user_id = ?", [
+    const result = await pool.query("UPDATE users SET ? WHERE user_id = ?", [
       req.body,
       req.params.user_id,
     ]);
-    res.json(result);
+    res.json(result[0]);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

@@ -19,6 +19,9 @@ export default function Navbar() {
             Create Course
           </Link>
         </li>
+        <li>
+          <Link to='/login'>Login</Link>
+        </li>
       </ul>
     </div>
   );

@@ -14,8 +14,3 @@ export const getUserRequest = async (user_id) =>
 
 export const updateUsersRequest = async (user_id, newFields) =>
   await axios.put(`http://localhost:4000/users/${user_id}`, newFields);
-
-export const toggleUsersDoneRequest = async (user_id, done) =>
-  await axios.put(`http://localhost:4000/users/${user_id}`, {
-    done,
-  });

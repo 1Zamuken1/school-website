@@ -25,7 +25,7 @@ export default function CourseForm() {
   }, []);
 
   return (
-    <div className='mx-auto'>
+    <div className="mx-auto">
       <Formik
         initialValues={course}
         enableReinitialize={true}
@@ -47,38 +47,38 @@ export default function CourseForm() {
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
           <Form
             onSubmit={handleSubmit}
-            className='bg-Frost text-Black max-w-md rounded-md p-5 mx-auto mt-10'
+            className="bg-Frost text-Black max-w-md rounded-md p-5 mx-auto mt-10"
           >
-            <h1 className='text-xl font-bold text-Ice '>
+            <h1 className="text-xl font-bold text-Ice ">
               {params.code ? "Edit Course" : "New Course"}
             </h1>
-            <label className='block mt-2 text-2xl font-bold text-Abysm'>
+            <label className="block mt-2 text-2xl font-bold text-Abysm">
               Title
             </label>
             <input
-              type='text'
-              name='course_title'
-              placeholder='Write a title'
-              className='px-2 py-1 rounded-sm w-full'
+              type="text"
+              name="course_title"
+              placeholder="Write a title"
+              className="px-2 py-1 rounded-sm w-full"
               onChange={handleChange}
               value={values.course_title}
             />
 
-            <label className='block mt-2 text-2xl font-bold text-Abysm'>
+            <label className="block mt-2 text-2xl font-bold text-Abysm">
               Description
             </label>
             <textarea
-              name='course_description'
-              rows='3'
-              placeholder='Write a description'
-              className='px-2 py-1 rounded-sm w-full'
+              name="course_description"
+              rows="3"
+              placeholder="Write a description"
+              className="px-2 py-1 rounded-sm w-full"
               onChange={handleChange}
               value={values.course_description}
             ></textarea>
             <button
-              type='submit'
+              type="submit"
               disabled={isSubmitting}
-              className='block bg-Ice text-Melancholia font-bold px-2 py-1 w-full rounded-md'
+              className="block bg-Ice text-Melancholia font-bold px-2 py-1 w-full rounded-md"
             >
               {isSubmitting ? "Saving . . ." : "Save"}
             </button>
