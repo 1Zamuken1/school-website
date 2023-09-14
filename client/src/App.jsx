@@ -29,7 +29,7 @@ class App extends React.Component {
       if (result && result.success) {
         UserStore.loading = false;
         UserStore.isLoggedIn = true;
-        UserStore.username = result.username;
+        UserStore.user_name = result.user_name;
       } else {
         UserStore.loading = false;
         UserStore.isLoggedIn = false;
@@ -53,7 +53,7 @@ class App extends React.Component {
 
       if (result && result.success) {
         UserStore.isLoggedIn = false;
-        UserStore.username = "";
+        UserStore.user_name = "";
       }
     } catch (error) {
       console.log(error);
@@ -61,43 +61,38 @@ class App extends React.Component {
   }
 
   render() {
-    if(UserStore.loading){
-      return(
-        <div>
-          Loading, please wait ...
-        </div>
-      );
-    }else{
-      if(UserStore.isLoggedIn){
-        return(
+    if (UserStore.loading) {
+      return <div>Loading, please wait ...</div>;
+    } else {
+      if (UserStore.isLoggedIn) {
+        return (
           <div>
-            Welcome {UserStore.username}
+            Welcome {UserStore.user_name}
             <div className=" bg-Abysm text-White h-screen">
-          <Navbar />
-          <div className="container mx-auto py-4 px-10">
-            <CourseContextProvider>
-              <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/" element={<CoursesPage />} />
-                <Route path="/new-course" element={<CourseForm />} />
-                <Route path="/edit-course/:code" element={<CourseForm />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </CourseContextProvider>
-          </div>
-        </div>
-
-            <SubmitButton 
-              text={'Log out'}
+              <Navbar />
+              <div className="container mx-auto py-4 px-10">
+                <CourseContextProvider>
+                  <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<CoursesPage />} />
+                    <Route path="/new-course" element={<CourseForm />} />
+                    <Route path="/edit-course/:code" element={<CourseForm />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </CourseContextProvider>
+              </div>
+            </div>
+            <SubmitButton
+              text={"Log out"}
               disabled={false}
-              onClick={()=>this.doLogout()}
+              onClick={() => this.doLogout()}
             />
           </div>
-        )
+        );
       }
       return (
         <div>
-          <Login/>
+          <Login />
         </div>
       );
     }
