@@ -11,22 +11,43 @@ import "./index.css";
 import Home from "./Screens/Home";
 import Login from "./Screens/Login";
 import firebaseApp from "./Credentials/credentials.js";
-import {getAuth, onAuthStateChanged} from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const auth = getAuth(firebaseApp);
+const firestore = getFirestore(firebaseApp);
 
-export default function App(){
-const [user, setUser] = useState(null);
-onAuthStateChanged(auth, (firebaseUser) => {
-  if(firebaseUser){
-    setUser(firebaseUser);
-  } else {
-    setUser(null);
+export default function App() {
+  const [user, setUser] = useState(null);
+  async function getRol(uid) {
+    const docuRef = doc(firestore, `users/${uid}`);
+    const docuCifrada = await getDoc(docuRef);
+    const infoFinal = docuCifrada.data().role;
+    return infoFinal;
   }
-});
-return(
-  <>{user ? <Navbar /> : <Login/>}</>
-)
+
+  function setUserRole(firebaseUser) {
+    getRol(firebaseUser.uid).then((role) => {
+      const userData = {
+        uid: firebaseUser.uid,
+        email: firebaseUser.email,
+        role: role,
+      };
+      setUser(userData);
+      console.log("user Data final", userData);
+    });
+  }
+
+  onAuthStateChanged(auth, (firebaseUser) => {
+    if (firebaseUser) {
+      if (!user) {
+        setUserRole(firebaseUser);
+      }
+    } else {
+      setUser(null);
+    }
+  });
+  return <>{user ? <Home user={user} /> : <Login />}</>;
 }
 
 /*export default function App() {

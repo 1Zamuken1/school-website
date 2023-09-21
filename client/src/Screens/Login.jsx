@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import firebaseApp from "../Credentials/credentials";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const auth = getAuth(firebaseApp);
@@ -30,7 +30,7 @@ export default function Login() {
     if (isRegistering) {
       userRegister(email, password, role);
     } else {
-      elses;
+      signInWithEmailAndPassword(auth, email, password);
     }
   }
   return (
@@ -51,7 +51,7 @@ export default function Login() {
         <label>
           Role:
           <select id="role">
-            <option value="admin">Administrator</option>
+            <option value="teacher">Teacher</option>
             <option value="student">Student</option>
           </select>
         </label>
