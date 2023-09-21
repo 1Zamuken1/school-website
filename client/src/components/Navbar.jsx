@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import "../index.css";
+import firebaseApp from "../Credentials/credentials";
+import { getAuth, signOut } from "firebase/auth";
+
+const auth = getAuth(firebaseApp);
 
 export default function Navbar() {
   return (
@@ -20,7 +24,7 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to='/login'>Login</Link>
+          <button onClick={() => signOut(auth)}>Log Out</button>
         </li>
       </ul>
     </div>
