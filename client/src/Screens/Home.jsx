@@ -1,7 +1,10 @@
 import React from "react";
-import AdminView from "../components/AdminView";
+import firebaseApp from "../Credentials/credentials";
+import { getAuth, signOut } from "firebase/auth";
 import TeacherView from "../components/TeacherView";
 import StudentView from "../components/StudentView";
+
+const auth = getAuth(firebaseApp);
 
 export default function Home(user) {
   return (
