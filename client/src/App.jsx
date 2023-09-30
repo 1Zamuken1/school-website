@@ -3,6 +3,7 @@ import "./index.css";
 
 /* Logins */
 import Home from "./Screens/Home";
+import AdminView from "./components/AdminView";
 import TeacherView from "./components/TeacherView";
 import StudentView from "./components/StudentView";
 import Login from "./Screens/Login";
@@ -23,7 +24,7 @@ export default function App() {
     return infoFinal;
   }
 
-function setUserRol(firebaseUser) {
+  function setUserRol(firebaseUser) {
     getRol(firebaseUser.uid).then((rol) => {
       const userData = {
         uid: firebaseUser.uid,
@@ -44,19 +45,15 @@ function setUserRol(firebaseUser) {
       setUser(null);
     }
   });
-  
-  if(!user){
-    return(
-      <Login />
-    );
-  } else if(user.rol === 'teacher'){
-    return(
-      <TeacherView />
-    )
-  } else if(user.rol === 'student'){
-    return(
-      <StudentView />
-    )
+
+  if (!user) {
+    return <Login />;
+  } else if (user.rol === "admin") {
+    return <AdminView />;
+  } else if (user.rol === "teacher") {
+    return <TeacherView />;
+  } else if (user.rol === "student") {
+    return <StudentView />;
   }
 }
 
