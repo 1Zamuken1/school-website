@@ -12,7 +12,11 @@ export default {
       'Meteor':'#5838e3',
       'Abysm':'#160e39',
 
+      /* Purple */
+      'Sweet':'#9c38e3',
+
       /* Green */
+      'Greenvorios':'#c3e338',
       'Crystal': '#73d89f',
       'Esmerald':'#39e39d',
       'Koopa':'#5de339',

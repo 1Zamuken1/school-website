@@ -1,11 +1,12 @@
 import { initializeApp } from 'firebase/app';
 const firebaseConfig = {
-    apiKey: "AIzaSyBGoIsZrXa42YENzmk_zihg-Hin5qSZ0uc",
-    authDomain: "schoolar-website.firebaseapp.com",
-    projectId: "schoolar-website",
-    storageBucket: "schoolar-website.appspot.com",
-    messagingSenderId: "724730587831",
-    appId: "1:724730587831:web:a9b384acf0bbc3c29e3b32"
+    apiKey: "AIzaSyCRD8Dshf2iNbm1aklKlQ0AYcOffzs9FCc",
+    authDomain: "schoolar-website-1e686.firebaseapp.com",
+    projectId: "schoolar-website-1e686",
+    storageBucket: "schoolar-website-1e686.appspot.com",
+    messagingSenderId: "1035466982943",
+    appId: "1:1035466982943:web:8fa934589943e9b058f72a",
+    measurementId: "G-DDR38KBNEC"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
