@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import StudentNavbar from "./StudentNavbar";
 
 export default function StudentView() {
   return (
     <div>
-      <Navbar />
+      <StudentNavbar />
       <h2>Hi Student</h2>
     </div>
   );

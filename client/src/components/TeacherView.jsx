@@ -4,6 +4,7 @@ import CoursesPage from "../Pages/CoursesPage";
 import CourseForm from "../Pages/CourseForm";
 import NotFound from "../pages/NotFound";
 import Navbar from "../components/Navbar";
+import CourseDetail from "./CourseDetail";
 import { CourseContextProvider } from "../context/CourseProvider";
 
 export default function TeacherView() {
@@ -16,6 +17,7 @@ export default function TeacherView() {
             <Route path="/" element={<CoursesPage />} />
             <Route path="/new-course" element={<CourseForm />} />
             <Route path="/edit-course/:code" element={<CourseForm />} />
+            <Route path="/course/:code" element={<CourseDetail/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </CourseContextProvider>

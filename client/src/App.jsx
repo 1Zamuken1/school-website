@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./index.css";
 
 /* Logins */
-import Home from "./Screens/Home";
 import AdminView from "./components/AdminView";
 import TeacherView from "./components/TeacherView";
 import StudentView from "./components/StudentView";
@@ -56,5 +55,3 @@ export default function App() {
     return <StudentView />;
   }
 }
-
-/* return <>{user ? <Home user={user} /> : <Login />}</>; */
