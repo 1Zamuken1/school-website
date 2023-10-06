@@ -9,7 +9,7 @@ import { CourseContextProvider } from "../context/CourseProvider";
 
 export default function TeacherView() {
   return (
-    <div className=" bg-Abysm text-White h-screen">
+    <div className=" bg-Abysm text-White max-h-full">
       <Navbar />
       <div className="container mx-auto py-4 px-10">
         <CourseContextProvider>

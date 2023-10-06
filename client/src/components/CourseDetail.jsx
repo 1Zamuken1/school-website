@@ -23,9 +23,13 @@ function CourseDetail() {
 
   return (
     <div>
-      <h1>{course.course_title}</h1>
-      <p>{course.course_description}</p>
-      {/* Otros detalles del curso */}
+      <div className='bg-Meteor rounded-md py-4 px-4 container'>
+        <br></br>
+        <h1 className='text-5xl text-White text-center'>{course.course_title}</h1>
+        <p className='text-3xl text-White text-left mt-10'>{course.course_description}</p>
+        {/* Otros detalles del curso */}
+      </div>
+      
     </div>
   );
 }

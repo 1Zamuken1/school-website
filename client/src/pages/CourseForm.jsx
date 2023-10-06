@@ -11,7 +11,6 @@ export default function CourseForm() {
   });
   const params = useParams();
   const navigate = useNavigate();
-
   useEffect(() => {
     const loadCourse = async () => {
       if (params.code) {
@@ -23,7 +22,7 @@ export default function CourseForm() {
       }
     };
     loadCourse();
-  }, [params.code, getCourse]);
+  }, []);
 
   return (
     <div className="mx-auto">
@@ -31,19 +30,18 @@ export default function CourseForm() {
         initialValues={course}
         enableReinitialize={true}
         onSubmit={async (values, actions) => {
+          console.log(values);
+
           if (params.code) {
-            // Aquí manejas la edición de un curso existente
             await updateCourse(params.code, values);
           } else {
-            // Aquí manejas la creación de un nuevo curso
-            const newCourse = await createCourse(values);
-            if (newCourse && newCourse.code) {
-              navigate(`/course/${newCourse.code}`);
-            } else {
-              console.error("Error al crear el curso"); // Manejo de errores
-            }
+            await createCourse(values);
           }
-          actions.setSubmitting(false);
+          navigate("/");
+          setCourse({
+            course_title: "",
+            course_description: "",
+          });
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
@@ -91,6 +89,7 @@ export default function CourseForm() {
   );
 }
 
+
 /*export default function CourseForm() {
   const { createCourse, getCourse, updateCourse } = useCourses();
   const [course, setCourse] = useState({
@@ -99,6 +98,7 @@ export default function CourseForm() {
   });
   const params = useParams();
   const navigate = useNavigate();
+
   useEffect(() => {
     const loadCourse = async () => {
       if (params.code) {
@@ -110,7 +110,7 @@ export default function CourseForm() {
       }
     };
     loadCourse();
-  }, []);
+  }, [params.code, getCourse]);
 
   return (
     <div className="mx-auto">
@@ -118,18 +118,19 @@ export default function CourseForm() {
         initialValues={course}
         enableReinitialize={true}
         onSubmit={async (values, actions) => {
-          console.log(values);
-
           if (params.code) {
+            // Aquí manejas la edición de un curso existente
             await updateCourse(params.code, values);
           } else {
-            await createCourse(values);
+            // Aquí manejas la creación de un nuevo curso
+            const newCourse = await createCourse(values);
+            if (newCourse && newCourse.code) {
+              navigate(`/course/${newCourse.code}`);
+            } else {
+              console.error("Error al crear el curso"); // Manejo de errores
+            }
           }
-          navigate("/");
-          setCourse({
-            course_title: "",
-            course_description: "",
-          });
+          actions.setSubmitting(false);
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
