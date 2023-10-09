@@ -15,3 +15,10 @@ CREATE TABLE users (
     user_password VARCHAR(255) NOT NULL,
     createAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE advertisements (
+    code INTEGER PRIMARY KEY AUTO_INCREMENT,
+    advertisement_title VARCHAR(200) NOT NULL,
+    advertisement_text VARCHAR(500) NOT NULL,
+    createAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
