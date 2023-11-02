@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import {
   getAdvertisementsRequest,
   createAdvertisementRequest,
@@ -22,7 +22,7 @@ export const AdvertisementContextProvider = ({ children }) => {
   const [advertisements, setAdvertisements] = useState([]);
 
   async function loadAdvertisements() {
-    const response = await getAdvertisementRequest();
+    const response = await getAdvertisementsRequest();
     setAdvertisements(response.data);
   }
 
@@ -36,4 +36,45 @@ export const AdvertisementContextProvider = ({ children }) => {
       console.error(error);
     }
   };
+
+  const createAdvertisement = async (advertisement) => {
+    try {
+      const response = await createAdvertisementRequest(advertisement);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getAdvertisement = async (code) => {
+    try {
+      const response = await getAdvertisementRequest(code);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateAdvertisement = async (code, newFields) => {
+    try {
+      const response = await updateAdvertisementRequest(code, newFields);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return(
+    <AdvertisementContext.Provider
+      value={{
+        advertisements,
+        loadAdvertisements,
+        deleteAdvertisement,
+        createAdvertisement,
+        getAdvertisement,
+        updateAdvertisement,
+      }}
+    >
+      {children}
+    </AdvertisementContext.Provider>
+  );
 };

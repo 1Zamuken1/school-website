@@ -63,7 +63,7 @@ export const deleteAdvertisement = async (req, res) => {
       [req.params.code]
     );
     if (result.affectedRows === 0) {
-      return res.sendStatus(404).json({ message: "course not found" });
+      return res.sendStatus(404).json({ message: "advertisement not found" });
     }
     return result.sendStatus(204);
   } catch (error) {
