@@ -29,7 +29,7 @@ export const createAdvertisement = async (req, res) => {
   try {
     const { advertisement_title, advertisement_description } = req.body;
     const [result] = await pool.query(
-      "INSERT INTO advertisements (advertisement_title, advertisement_description VALUES (?, ?)",
+      "INSERT INTO advertisements (advertisement_title, advertisement_description) VALUES (?, ?)",
       [advertisement_title, advertisement_description]
     );
     res.json({

@@ -19,6 +19,6 @@ CREATE TABLE users (
 CREATE TABLE advertisements (
     code INTEGER PRIMARY KEY AUTO_INCREMENT,
     advertisement_title VARCHAR(200) NOT NULL,
-    advertisement_text VARCHAR(500) NOT NULL,
+    advertisement_description VARCHAR(500) NOT NULL,
     createAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
