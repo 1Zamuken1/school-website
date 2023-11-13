@@ -37,8 +37,8 @@ function CourseDetail() {
         {/* Otros detalles del curso */}
       </div>
 
-      <div>
-        <button>
+      <div className="container align text-left">
+        <button className="mt-5 bg-Broad rounded-md text-Abysm px-5 py-5">
           <Link to="/new-advertisement">Create Advertisement</Link>
         </button>
       </div>

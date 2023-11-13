@@ -4,7 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function AdvertisementForm() {
-  const { createAdvertisement, getAdvertisement, updateAdvertisement } = useAdvertisements();
+  const { createAdvertisement, getAdvertisement, updateAdvertisement } =
+    useAdvertisements();
   const [advertisement, setAdvertisement] = useState({
     advertisement_title: "",
     advertisement_description: "",
@@ -25,7 +26,7 @@ export default function AdvertisementForm() {
   }, []);
 
   return (
-    <div>
+    <div className="mx-auto">
       <Formik
         initialValues={advertisement}
         enableReinitialize={true}
@@ -46,27 +47,37 @@ export default function AdvertisementForm() {
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
           <Form onSubmit={handleSubmit}>
-            <h1>
+            <h1 className="text-xl font-bold text-Ice">
               {params.code ? "Edit Advertisement" : "New Advertisement"}
             </h1>
-            <label>Title</label>
+            <label className="block mt-2 text-2xl font-bold text-Abysm">
+              Title
+            </label>
             <input
               type="text"
               name="advertisement_title"
               placeholder="Write a title"
+              className="px-2 py-1 rounded-sm w-full text-Black"
               onChange={handleChange}
               value={values.advertisement_title}
             />
 
-            <label>Description</label>
+            <label className="block mt-2 text-2xl font-bold text-Abysm">
+              Description
+            </label>
             <textarea
               name="advertisement_description"
               rows="3"
               placeholder="Write a description"
+              className="px-2 py-1 rounded-sm w-full text-Black"
               onChange={handleChange}
               value={values.advertisement_description}
             ></textarea>
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="block bg-Ice text-Melancholia font-bold px-2 py-1 w-full rounded-md"
+            >
               {isSubmitting ? "Saving . . ." : "Save"}
             </button>
           </Form>
