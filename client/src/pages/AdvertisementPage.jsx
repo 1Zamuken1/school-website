@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+/*import { useEffect } from "react";
 import AdvertisementCard from "../components/AdvertisementCard/AdvertisementCard";
 import {useAdvertisements} from "../context/AdvertisementProvider/AdvertisementProvider";
 
@@ -21,4 +21,33 @@ export function AdvertisementPage() {
             <div>{renderMain()}</div>
         </div>
     );
+}*/
+
+import { useEffect, useState } from "react";
+import { getAdvertisementsRequest } from "../api/advertisements.api";
+
+export default function AdvertisementPage() {
+
+    const [advertisements, setAdvertisements] = useState([])
+
+    useEffect(() => {
+        async function loadAdvertisements(){
+           const response = await getAdvertisementsRequest();
+           setAdvertisements(response.data)
+        }
+        loadAdvertisements();
+    }, [])
+
+  return (
+    <div>
+        {
+            advertisements.map(advertisements => (
+                <div>
+                    <h2>{advertisements.advertisement_title}</h2>
+                    <p>{advertisements.advertisement_description}</p>
+                </div>
+            ))
+        }
+    </div>
+  )
 }
