@@ -6,7 +6,6 @@ import CourseForm from "../Pages/CourseForm";
 import AdvertisementForm from "../Pages/AdvertisementForm";
 import CourseDetail from "./CourseDetail";
 import { CourseContextProvider } from "../context/CourseProvider";
-import { AdvertisementDetail } from "./AdvertisementDetail";
 import { AdvertisementContextProvider } from "../context/AdvertisementProvider";
 import NotFound from "../pages/NotFound";
 
@@ -26,7 +25,6 @@ export default function TeacherView() {
             
             <Route path="/new-advertisement" element={< AdvertisementForm />} />
             <Route path="/edit-advertisement/:code" element={<AdvertisementForm />} />
-            <Route path="/advertisements/" element={<AdvertisementDetail/>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
