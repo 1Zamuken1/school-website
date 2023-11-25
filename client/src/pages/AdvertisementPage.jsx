@@ -30,25 +30,21 @@ export default function AdvertisementPage() {
     </div>
   );
 }*/
-//----------------------------------------------------------------------------------------------
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAdvertisements } from "../context/AdvertisementProvider";
 import { useParams } from "react-router-dom";
 
 export default function AdvertisementPage() {
-  const { loadAdvertisementsByCourse, advertisements } = useAdvertisements();
-  const { code } = useParams();
+  const [advertisements, setAdvertisements] = useState([]);
+  const { loadAdvertisementsByCourse } = useAdvertisements();
+  const { code } = useParams(); // Asegúrate de importar 'useParams' de react-router-dom
 
   useEffect(() => {
     // Cargar anuncios específicos para el curso al montar el componente
     if (code) {
-      const fetchData = async () => {
-        await loadAdvertisementsByCourse(code);
-      };
-
-      fetchData();
+      loadAdvertisementsByCourse(code);
     }
-  }, [code, loadAdvertisementsByCourse]);
+  }, [code]);
 
   return (
     <div className="flex-col ml-40 mr-20 pl-40 pr-40 block text-center mb-5 justify-center">
@@ -66,7 +62,3 @@ export default function AdvertisementPage() {
     </div>
   );
 }
-
-
-
-
